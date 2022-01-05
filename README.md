@@ -36,28 +36,6 @@ Each file contains the implemented version of the kernels:
 	cudatoolkit 10.2.89
 	cpuinfo 8.0.0 
 
-# How to Compile 
-
-Enter the directory from the version desired and execute:
-
-`$ make _BENCHMARK CLASS=_WORKLOAD`
-
-_BENCHMARKs are: 
-		
-	EP, CG, MG, IS, FT, BT, SP and LU 
-																										
-_WORKLOADs are: 
-	
-	Class S: small for quick test purposes
-	Class W: workstation size (a 90's workstation; now likely too small)	
-	Classes A, B, C: standard test problems; ~4X size increase going from one class to the next	
-	Classes D, E, F: large test problems; ~16X size increase from each of the previous Classes  
-
-
-Command example:
-
-`$ make ep CLASS=A`
-
 # How to Execute
 
 Enter the directory from the version desired and execute:
