@@ -21,7 +21,7 @@
 # ------------------------------------------------------------------------------
 #
 # The serial Python version is a translation of the NPB serial C++ version
-# Serial Python version: https://github.com/PYTHON
+# Serial Python version: https://github.com/danidomenico/NPB-PYTHON/tree/master/NPB-SER
 # 
 # Authors of the Python code:
 #	LUPS (Laboratory of Ubiquitous and Parallel Systems)
