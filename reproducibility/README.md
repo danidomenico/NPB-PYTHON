@@ -15,9 +15,9 @@
 - Contains a Dockerfile with the environment required to execute the experiments. To be used, this Dockerfile requires the [Nvidia Docker](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html).
 
 #### profiling
-- Constains proling files obtained from GPU executions with *nvprof* tool, as well as R files to processes and generate charts from them.
+- Constains proling files obtained from GPU executions with *nvprof* tool, as well as R files to process and generate charts from them.
 
 #### results
-- Constains date from the results of the executions on the platform and a R file to generate charts from it.
+- Constains data from the results of the executions on the platform and a R file to generate charts from it.
 
 
