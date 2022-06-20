@@ -48,11 +48,12 @@ VERSION = "4.1"
 CLASS = ""
 
 #Commom
-NITER_DEFAULT = 0 #BT e FT
+NITER_DEFAULT = 0 #BT, FT and SP
+DT_DEFAULT = 0.0 #BT, LU and SP
+PROBLEM_SIZE = 0 #BT and SP
 
-#BT
-PROBLEM_SIZE = 0
-DT_DEFAULT = 0.0
+# BT
+# --
 
 # CG
 NA = 0
@@ -75,6 +76,13 @@ NTOTAL = 0
 NTOTALP = 0
 DEFAULT_BEHAVIOR = 1
 
+#LU
+ISIZ1 = 0 
+ISIZ2 = 0
+ISIZ3 = 0
+ITMAX_DEFAULT = 0
+INORM_DEFAULT = 0
+
 # MG
 NX_DEFAULT = 0
 NY_DEFAULT = 0
@@ -96,6 +104,7 @@ def set_bt_info(class_npb):
 	
 	if class_npb == 'S':
 		PROBLEM_SIZE, NITER_DEFAULT, DT_DEFAULT = 12, 60, 0.010
+		#PROBLEM_SIZE, NITER_DEFAULT, DT_DEFAULT = 6, 60, 0.010
 	elif class_npb == 'W':
 		PROBLEM_SIZE, NITER_DEFAULT, DT_DEFAULT = 24, 200, 0.0008
 	elif class_npb == 'A':
@@ -246,6 +255,35 @@ def set_is_info(class_npb):
 		sys.exit()
 #END set_is_info()
 
+
+def set_lu_info(class_npb):
+	global CLASS
+	global ISIZ1, ISIZ2, ISIZ3
+	global ITMAX_DEFAULT, INORM_DEFAULT, DT_DEFAULT
+	
+	CLASS = class_npb
+	
+	if class_npb == 'S':
+		problem_size, ITMAX_DEFAULT, INORM_DEFAULT, DT_DEFAULT = 12, 50, 50, 0.5
+	elif class_npb == 'W':
+		problem_size, ITMAX_DEFAULT, INORM_DEFAULT, DT_DEFAULT = 33, 300, 300, 1.5e-3
+	elif class_npb == 'A':
+		problem_size, ITMAX_DEFAULT, INORM_DEFAULT, DT_DEFAULT = 64, 250, 250, 2.0
+	elif class_npb == 'B':
+		problem_size, ITMAX_DEFAULT, INORM_DEFAULT, DT_DEFAULT = 102, 250, 250, 2.0
+	elif class_npb == 'C':
+		problem_size, ITMAX_DEFAULT, INORM_DEFAULT, DT_DEFAULT = 162, 250, 250, 2.0
+	elif class_npb == 'D':
+		problem_size, ITMAX_DEFAULT, INORM_DEFAULT, DT_DEFAULT = 408, 300, 300, 1.0
+	elif class_npb == 'E':
+		problem_size, ITMAX_DEFAULT, INORM_DEFAULT, DT_DEFAULT = 1020, 300, 300, 0.5
+	else:
+		print("npbparams.py: Internal error: invalid class_npb type", class_npb)
+		sys.exit()
+	
+	ISIZ1, ISIZ2, ISIZ3 = problem_size, problem_size, problem_size
+#END set_lu_info()
+
 def set_mg_info(class_npb):
 	global CLASS
 	global NX_DEFAULT, NY_DEFAULT, NZ_DEFAULT
@@ -300,3 +338,29 @@ def set_mg_info(class_npb):
 	NDIM2 = ndim2
 	NDIM3 = ndim3
 #END set_mg_info()
+
+
+def set_sp_info(class_npb):
+	global CLASS
+	global PROBLEM_SIZE, NITER_DEFAULT, DT_DEFAULT
+	
+	CLASS = class_npb
+	
+	if class_npb == 'S':
+		PROBLEM_SIZE, DT_DEFAULT, NITER_DEFAULT = 12, 0.015, 100
+	elif class_npb == 'W':
+		PROBLEM_SIZE, DT_DEFAULT, NITER_DEFAULT = 36, 0.0015, 400
+	elif class_npb == 'A':
+		PROBLEM_SIZE, DT_DEFAULT, NITER_DEFAULT = 64, 0.0015, 400
+	elif class_npb == 'B':
+		PROBLEM_SIZE, DT_DEFAULT, NITER_DEFAULT = 102, 0.001, 400
+	elif class_npb == 'C':
+		PROBLEM_SIZE, DT_DEFAULT, NITER_DEFAULT = 162, 0.00067, 400
+	elif class_npb == 'D':
+		PROBLEM_SIZE, DT_DEFAULT, NITER_DEFAULT = 408, 0.00030, 500
+	elif class_npb == 'E':
+		PROBLEM_SIZE, DT_DEFAULT, NITER_DEFAULT = 1020, 0.0001, 500
+	else:
+		print("npbparams.py: Internal error: invalid class_npb type", class_npb)
+		sys.exit()
+#END set_bt_info()

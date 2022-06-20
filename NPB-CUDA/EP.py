@@ -23,7 +23,7 @@
 # The CUDA version is a parallel implementation of the serial C++ version
 # CUDA version: https://github.com/GMAP/NPB-GPU/tree/master/CUDA
 # 
-# Authors of the C++ code: 
+# Authors of the CUDA code: 
 # 	Gabriell Araujo <hexenoften@gmail.com>
 #
 # ------------------------------------------------------------------------------
