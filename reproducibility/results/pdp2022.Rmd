@@ -1,0 +1,151 @@
+---
+title: "PDP 2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE)
+require(dplyr);
+require(data.table);
+require(ggplot2);
+require(grid);
+require(gridExtra);
+require(RColorBrewer) 
+```
+
+
+```{r funcoes}
+read_results_raw <- function (filename)
+{
+  df <- NULL;
+  finfo <- file.info(filename);
+  if (!is.na(finfo$size) & (finfo$size >0) & (finfo$isdir==FALSE))
+  {
+    df <- read.csv(filename, header=FALSE, strip.white=TRUE, comment.char = "#", sep=";");
+    names(df) <- c("Benchmark", "Version", "Class", "Size", "Iter", "CPU", "GPU",  "Time");
+    #df$Size <- df$Size / 1e6;
+    #df$RunTime <- df$RunTime / 1e3;
+    #df$ReadLatency <- df$ReadLatency / 1e3;
+    #df$WriteLatency <- df$WriteLatency / 1e3;
+    #df$Workload <- ifelse(df$Workload == "a", "A", as.character(df$Workload));
+    #df$Workload <- ifelse(df$Workload == "b", "B", as.character(df$Workload));
+    #df$Workload <- ifelse(df$Workload == "c", "C", as.character(df$Workload));
+    #df$Workload <- ifelse(df$Workload == "d", "D", as.character(df$Workload));
+    
+    df$Origin = as.factor(filename);
+    df <- df %>% as.data.frame();
+  }
+  df;
+}
+
+expe <- list();
+expe$raw <- read_results_raw("results.csv");
+# cria coluna com a divisao
+#expe$raw$Img <- expe$raw$Time / expe$raw$Batch;
+
+expe$resume <- expe$raw %>% 
+  group_by(Benchmark, Version, Class, Size, CPU, GPU) %>%
+  #filter(Throughput > 0) %>%
+  summarise(
+    n= n(),
+    mean = mean(Time),
+    med = median(Time),
+    sd = sd(Time),
+    ci = qt(0.99,df=length(Time)-1)*sd(Time)/sqrt(length(Time))
+  );
+
+#expe$resume %>% arrange(Workload, desc(med_th)) %>% select(Workload, Size, med_rd);
+#expe$resume %>% filter(Size==15) %>% group_by(Size,Workload,DB) %>% summarise(max=max(med_th))
+```
+
+
+```{r speedup}
+
+expe$resume$speedup <- 0.0;
+
+df_serial <- expe$resume %>% filter(CPU==1 & Version=="PYTHON-SERIAL")
+for (b in unique(df_serial$Benchmark))
+{
+  df1 <- df_serial %>% filter(Benchmark == b);
+  if (nrow(df1)>0){
+    for (c in unique(df1$Class)){
+      df2 <- df1 %>% filter(Class == c);
+      if (nrow(df2)>0){
+        tserial <- df2[1,]$mean;
+        cat(paste(b, c, tserial,"\n"));
+        expe$resume[expe$resume$Benchmark == b & expe$resume$Class == c & expe$resume$Version == "PYTHON-CUDA",]$speedup <- tserial / expe$resume[expe$resume$Benchmark == b & expe$resume$Class == c  & expe$resume$Version == "PYTHON-CUDA",]$mean;
+      }
+    } # class
+  } 
+} # bench
+
+df_serial <- expe$resume %>% filter(CPU==1 & Version=="CPP-SERIAL")
+for (b in unique(df_serial$Benchmark))
+{
+  df1 <- df_serial %>% filter(Benchmark == b);
+  if (nrow(df1)>0){
+    for (c in unique(df1$Class)){
+      df2 <- df1 %>% filter(Class == c);
+      if (nrow(df2)>0){
+        tserial <- df2[1,]$mean;
+        cat(paste(b, c, tserial,"\n"));
+        expe$resume[expe$resume$Benchmark == b & expe$resume$Class == c & expe$resume$Version != "PYTHON-CUDA",]$speedup <- tserial / expe$resume[expe$resume$Benchmark == b & expe$resume$Class == c & expe$resume$Version != "PYTHON-CUDA",]$mean;
+      }
+    } # class
+  } 
+} # bench
+```
+```{r config}
+expe$resume$Version <- ifelse(expe$resume$Version == "CPP-CUDA", "CUDA", as.character(expe$resume$Version));
+expe$resume$Version <- ifelse(expe$resume$Version == "CPP-OPENACC", "OpenACC", as.character(expe$resume$Version));
+expe$resume$Version <- ifelse(expe$resume$Version == "PYTHON-CUDA", "Numba", as.character(expe$resume$Version));
+expe$resume$Version <- factor(expe$resume$Version, levels = c("Numba", "CUDA", "OpenACC"))
+```
+
+```{r time, fig.width=10, fig.height=4}
+
+gp1 <- expe$resume %>%
+  filter(CPU==0) %>%
+  ggplot(aes(x=Class, y=mean, fill=Version)) +
+  geom_bar(stat="identity", position = "dodge") +   
+  theme_bw(base_size=12) +
+  xlab("Workload class")+
+  ylab("Time (s)")+
+  #scale_x_continuous(breaks=c(5, 10,  15, 20, 25, 30))+
+  #scale_y_continuous(limits=c(0,80)) +
+  #geom_text(aes(y=mean, label=sprintf("%0.4f", sd)), position = position_dodge(0.9), vjust = 0, size = 2.5)+
+  scale_fill_brewer(palette = "Set1")  +
+  geom_errorbar(aes(ymin=mean-ci, ymax=mean+ci), width=.2,position=position_dodge(.9)) +
+  #scale_y_continuous(trans='sqrt') +
+  #ylim(0,5)+
+	theme(legend.position = "top", legend.title=element_blank()) +  
+  facet_wrap( ~Benchmark, ncol=4, scales="free");
+
+gp1
+#ggsave("/Users/jvlima/Source/lbm3d/lbm3d-gpu/article/figures/lbm3d-speedup-blaise.pdf", plot=gp1, width=12, height=6);
+ggsave("gpu_time.pdf", plot=gp1, width=9, height=6);
+```
+
+```{r time, fig.width=10, fig.height=4}
+
+gp1 <- expe$resume %>%
+  filter(CPU==0) %>%
+  ggplot(aes(x=Class, y=speedup, fill=Version)) +
+  geom_bar(stat="identity", position = "dodge") +   
+  theme_bw(base_size=12) +
+  xlab("Workload class")+
+  ylab("Speedup")+
+  #scale_x_continuous(breaks=c(5, 10,  15, 20, 25, 30))+
+  #scale_y_continuous(limits=c(0,80)) +
+  scale_fill_brewer(palette = "Set1")  +
+  #geom_errorbar(aes(ymin=mean-ci, ymax=mean+ci), width=.2,position=position_dodge(.9)) +
+  #scale_y_continuous(trans='sqrt') +
+  #ylim(0,5)+
+  theme(legend.position = "top", legend.title=element_blank()) +  
+  facet_wrap( ~Benchmark, ncol=4, scales="free");
+
+gp1
+#ggsave(".pdf", plot=gp1, width=12, height=6);
+ggsave("speedup.pdf", plot=gp1, width=9, height=6);
+```

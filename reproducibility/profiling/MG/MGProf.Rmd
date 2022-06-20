@@ -1,0 +1,464 @@
+---
+title: "MG traces"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(dplyr);
+require(ggplot2);
+require(grid);
+require(gridExtra);
+require(data.table);
+require(stringr)
+
+
+read_nvprof_trace <- function(file, begin=NULL, end=NULL) {
+  df <- read.csv(file, header=TRUE, strip.white=TRUE, comment.char = "=");
+  #names(df) <- c("Nature","ResourceId","Type","Start","End","Duration", "Depth", "Value");
+ if (!is.null(begin))
+   df <- df %>% filter( Start >= begin );
+ if (!is.null(end))
+   df <- df %>% filter( Start <= end );
+
+  m <- min(df$Start);
+  df$Start <- df$Start - m;
+  #df$Start <- df$Start ;
+  df$End <- df$Start+df$Duration;
+  #df$Start <- df$Start*1e-3;
+  #df$End <- df$End*1e-3;
+  #df$Duration <- df$Duration*1e-3;
+  df$Origin <- file;
+  df$ResourceId <- as.numeric(df$Device);
+  #df$Nature <- NULL;
+  #df$Type <- NULL;
+
+  df
+}
+
+```
+
+
+```{r}
+
+
+df_traces <- data.frame();
+
+df <- read_nvprof_trace("out_MG_B_cuda_2it.csv");
+df$Name <-  ifelse(grepl("rprj3_gpu_kernel", df$Name), "rprj3_gpu_kernel", as.character(df$Name));
+df$Name <-  ifelse(grepl("comm3_gpu_kernel_1", df$Name), "comm3_gpu_kernel_1", as.character(df$Name));
+df$Name <-  ifelse(grepl("comm3_gpu_kernel_2", df$Name), "comm3_gpu_kernel_2", as.character(df$Name));
+df$Name <-  ifelse(grepl("comm3_gpu_kernel_3", df$Name), "comm3_gpu_kernel_3", as.character(df$Name));
+df$Name <-  ifelse(grepl("zero3_gpu_kernel", df$Name), "zero3_gpu_kernel", as.character(df$Name));
+df$Name <-  ifelse(grepl("psinv_gpu_kernel", df$Name), "psinv_gpu_kernel", as.character(df$Name));
+df$Name <-  ifelse(grepl("interp_gpu_kernel", df$Name), "interp_gpu_kernel", as.character(df$Name));
+df$Name <-  ifelse(grepl("resid_gpu_kernel", df$Name), "resid_gpu_kernel", as.character(df$Name));
+df$Origin <- "CUDA (class B)";
+df$Kernel <- "MG";
+df_traces <- rbindlist(list(df_traces, df));
+
+df <- read_nvprof_trace("out_MG_B_numba_2it.csv");
+df$Name <-  ifelse(grepl("rprj3_gpu_kernel", df$Name), "rprj3_gpu_kernel", as.character(df$Name));
+df$Name <-  ifelse(grepl("comm3_gpu_kernel_1", df$Name), "comm3_gpu_kernel_1", as.character(df$Name));
+df$Name <-  ifelse(grepl("comm3_gpu_kernel_2", df$Name), "comm3_gpu_kernel_2", as.character(df$Name));
+df$Name <-  ifelse(grepl("comm3_gpu_kernel_3", df$Name), "comm3_gpu_kernel_3", as.character(df$Name));
+df$Name <-  ifelse(grepl("zero3_gpu_kernel", df$Name), "zero3_gpu_kernel", as.character(df$Name));
+df$Name <-  ifelse(grepl("psinv_gpu_kernel", df$Name), "psinv_gpu_kernel", as.character(df$Name));
+df$Name <-  ifelse(grepl("interp_gpu_kernel", df$Name), "interp_gpu_kernel", as.character(df$Name));
+df$Name <-  ifelse(grepl("resid_gpu_kernel", df$Name), "resid_gpu_kernel", as.character(df$Name));
+df$Origin <- "Numba (class B)";
+df$Kernel <- "MG";
+df_traces <- rbindlist(list(df_traces, df));
+
+df <- read_nvprof_trace("out_MG_C_cuda_2it.csv");
+df$Name <-  ifelse(grepl("rprj3_gpu_kernel", df$Name), "rprj3_gpu_kernel", as.character(df$Name));
+df$Name <-  ifelse(grepl("comm3_gpu_kernel_1", df$Name), "comm3_gpu_kernel_1", as.character(df$Name));
+df$Name <-  ifelse(grepl("comm3_gpu_kernel_2", df$Name), "comm3_gpu_kernel_2", as.character(df$Name));
+df$Name <-  ifelse(grepl("comm3_gpu_kernel_3", df$Name), "comm3_gpu_kernel_3", as.character(df$Name));
+df$Name <-  ifelse(grepl("zero3_gpu_kernel", df$Name), "zero3_gpu_kernel", as.character(df$Name));
+df$Name <-  ifelse(grepl("psinv_gpu_kernel", df$Name), "psinv_gpu_kernel", as.character(df$Name));
+df$Name <-  ifelse(grepl("interp_gpu_kernel", df$Name), "interp_gpu_kernel", as.character(df$Name));
+df$Name <-  ifelse(grepl("resid_gpu_kernel", df$Name), "resid_gpu_kernel", as.character(df$Name));
+df$Origin <- "CUDA (class C)";
+df$Kernel <- "MG";
+df_traces <- rbindlist(list(df_traces, df));
+
+df <- read_nvprof_trace("out_MG_C_numba_2it.csv");
+df$Name <-  ifelse(grepl("rprj3_gpu_kernel", df$Name), "rprj3_gpu_kernel", as.character(df$Name));
+df$Name <-  ifelse(grepl("comm3_gpu_kernel_1", df$Name), "comm3_gpu_kernel_1", as.character(df$Name));
+df$Name <-  ifelse(grepl("comm3_gpu_kernel_2", df$Name), "comm3_gpu_kernel_2", as.character(df$Name));
+df$Name <-  ifelse(grepl("comm3_gpu_kernel_3", df$Name), "comm3_gpu_kernel_3", as.character(df$Name));
+df$Name <-  ifelse(grepl("zero3_gpu_kernel", df$Name), "zero3_gpu_kernel", as.character(df$Name));
+df$Name <-  ifelse(grepl("psinv_gpu_kernel", df$Name), "psinv_gpu_kernel", as.character(df$Name));
+df$Name <-  ifelse(grepl("interp_gpu_kernel", df$Name), "interp_gpu_kernel", as.character(df$Name));
+df$Name <-  ifelse(grepl("resid_gpu_kernel", df$Name), "resid_gpu_kernel", as.character(df$Name));
+df$Origin <- "Numba (class C)";
+df$Kernel <- "MG";
+df_traces <- rbindlist(list(df_traces, df));
+
+#df_traces <- df_traces[!grepl("setbv_gpu_kernel_3", df_traces$Name),];
+#df$Name
+
+library(RColorBrewer)
+# Define the number of colors you want
+nb.cols <- 14
+mycolors <- colorRampPalette(brewer.pal(8, "Set1"))(nb.cols)
+
+gp <- df_traces %>% #filter(Origin=="PARSEC") %>%
+  ggplot()+
+    theme_bw(base_size=10) +
+   ylab("GPU Identification") +
+   #scale_fill_brewer(palette = "Set1") +
+#    coord_cartesian(xlim=c(Tmin,Tmax)) +
+    geom_segment(aes(color=Name,
+                                 x=Start,
+                                 xend=End,
+                                 y=factor(ResourceId),
+                                 yend=factor(ResourceId)), size=4)+
+#    geom_rect(alpha=1, aes(fill=Name,
+#                                 xmin=Start,
+#                                 xmax=End,
+#                                 ymin=ResourceId,
+#                                 ymax=ResourceId+0.9))+
+    facet_grid(Origin~Kernel, scales="free_x");
+    #scale_y_reverse();
+gp
+```
+
+```{r fig.width=12, fig.height=8}
+
+require(gridExtra)
+df <- df_traces;
+
+df_ratios <- data.frame();
+for(ker in unique(df_traces$Kernel)){
+  for(o in unique(df_traces$Origin)){
+    k <- df %>% filter(Origin==o & Kernel==ker) %>% group_by(ResourceId) %>% summarize(sum=sum(Duration));
+    execution_time <- max(k$sum);
+  
+    k <- df  %>% filter(Origin==o & Kernel==ker) %>% 
+      group_by(ResourceId,Name,Origin,Kernel) %>% summarize(sum=sum(Duration), ratio=sum(Duration)/execution_time*100);
+    df_ratios <- rbindlist(list(df_ratios, k));
+  }
+}
+#df_ratios$ratio
+#df_ratios$Origin
+
+#grid.arrange(grobs = gps, ncol = 2) ;
+gp1 <- df_ratios  %>%
+  ggplot(aes(x=as.factor(ResourceId), y=ratio, fill=as.factor(Name)))+
+  geom_bar(stat="identity")+
+  #scale_fill_brewer(palette = "Set1") +
+  scale_fill_manual(values = mycolors) +
+  ggtitle("Ocupancy by GPU Thread")+
+  labs(x="Version", y="Ratio", fill="GPU Events") +
+  #xlab("Version")+
+  #ylab("Percentual")+
+  #filllab("Events")+
+  ylim(0,100)+
+  theme_bw()+
+  facet_grid(Kernel~Origin, scales="free_y");
+gp1
+
+```
+
+```{r fig.width=12, fig.height=8}
+
+
+
+df_transfer <- data.frame();
+for(o in unique(df_traces$Origin)){
+#  k <- df_traces %>% filter(Origin==o) %>% group_by(ResourceId) %>% summarize(sum=sum(Duration));
+#  execution_time <- max(k$sum);
+
+  k <- df_traces  %>% filter(Origin==o) %>% filter(str_detect(Name, 'memcpy')) %>%
+    group_by(ResourceId,Name,Origin) %>% summarize(sum=sum(Size));
+  df_transfer <- rbindlist(list(df_transfer, k));
+}
+
+gp1 <- df_transfer %>%
+  ggplot(aes(x=as.factor(ResourceId), y=sum, fill=as.factor(Name)))+
+  geom_bar(stat="identity")+
+  scale_fill_brewer(palette = "Set1") +
+  ggtitle("Total transfer by GPU Thread")+
+  #ylab("MBytes")+
+  labs(x="Version", y="MBytes", fill="GPU Events") +
+  theme_bw()+
+  facet_wrap(Origin~., scales="free_y", ncol=2);
+gp1
+```
+
+```{r fig.width=12, fig.height=4}
+
+
+
+df_transfer <- data.frame();
+for(o in unique(df_traces$Origin)){
+#  k <- df_traces %>% filter(Origin==o) %>% group_by(ResourceId) %>% summarize(sum=sum(Duration));
+#  execution_time <- max(k$sum);
+
+  k <- df_traces  %>% filter(Origin==o) %>% #filter(str_detect(Name, 'volta')) %>% 
+    group_by(ResourceId,Name,Origin,Kernel) %>% summarize(sum=sum(Duration));
+  df_transfer <- rbindlist(list(df_transfer, k));
+}
+df_transfer$Origin <- factor(df_transfer$Origin, levels = c("Numba (class B)", "CUDA (class B)", "Numba (class C)", "CUDA (class C)"))
+df_transfer$Name <- factor(df_transfer$Name, levels = c("resid_gpu_kernel", "interp_gpu_kernel", "psinv_gpu_kernel", "zero3_gpu_kernel", "comm3_gpu_kernel_3",  "comm3_gpu_kernel_2",  "comm3_gpu_kernel_1", "rprj3_gpu_kernel"))
+#df_transfer$Origin
+#df_transfer$sum
+#df_transfer$Name
+df_transfer[df_transfer$Name == "rprj3_gpu_kernel"]$sum
+df_transfer[df_transfer$Name == "comm3_gpu_kernel_1"]$sum
+df_transfer[df_transfer$Name == "comm3_gpu_kernel_2"]$sum
+df_transfer[df_transfer$Name == "comm3_gpu_kernel_3"]$sum
+df_transfer[df_transfer$Name == "zero3_gpu_kernel"]$sum
+df_transfer[df_transfer$Name == "psinv_gpu_kernel"]$sum
+df_transfer[df_transfer$Name == "resid_gpu_kernel"]$sum
+
+
+#df_transfer <- df_transfer[grepl("49152", df_transfer$Origin),];
+#grid.arrange(grobs = gps, ncol = 2) ;
+gp1 <- df_transfer %>%
+  ggplot(aes(x=as.factor(ResourceId), y=sum/1e3, fill=as.factor(Name)))+
+  geom_bar(stat="identity")+
+  scale_fill_brewer(palette = "Set1") +
+  #scale_fill_manual(values = mycolors) +
+  #ggtitle("Total execution by GPU Thread")+
+  #ylab("Time (s)")+
+  #scale_y_continuous(limits=c(0, 0.03)) +
+  labs(x=element_blank(), y="Time (s)", fill="MG: GPU kernels") +
+  theme_bw()+
+  theme(axis.ticks.x = element_blank(),
+        axis.text.x = element_blank()) +
+  #facet_grid(Kernel~Origin, scales="free_y");
+  facet_grid(~Origin, scales="free_y");
+gp1
+ggsave("mg_interation_time.pdf", plot=gp1, width=8, height=3.8);
+```
+
+```{r fig.width=8, fig.height=4}
+
+
+require(gridExtra)
+#df <- df_traces %>% filter(Kernel == "matMul");
+#df <- df[!grepl("memset", df$Name),];
+#df <- df[!grepl("DtoD", df$Name),];
+#df$Name <-  ifelse(grepl("volta_", df$Name), "GPU Kernel", as.character(df$Name));
+df_ratios <- data.frame();
+
+for(o in unique(df_traces$Origin)){
+  k <- df %>% filter(Origin==o) %>% group_by(Origin) %>% summarize(sum=sum(Duration));
+  execution_time <- max(k$sum);
+
+  k <- df  %>% filter(Origin==o) %>% 
+    group_by(Name,Origin,Kernel) %>% summarize(sum=sum(Duration), ratio=sum(Duration)/execution_time*100);
+  df_ratios <- rbindlist(list(df_ratios, k));
+}
+
+#grid.arrange(grobs = gps, ncol = 2) ;
+df_ratios$label = paste0(round(df_ratios$ratio,digits=2), "%")
+gp1 <- df_ratios  %>%
+  ggplot(aes(x=as.factor(Origin), y=ratio, fill=as.factor(Name), label=label))+
+  geom_bar(stat="identity")+
+  geom_text(position = position_stack(vjust = 0.5))+
+  #scale_fill_brewer(palette = "Set1") +
+  scale_fill_manual(values = mycolors) +
+  ggtitle("Normalized GPU Ocupancy")+
+  ylim(0,100)+
+  ylab("Normalized Ratio")+
+  theme_bw()+
+  theme(legend.position = "bottom", legend.title=element_blank(),axis.title.x=element_blank())+
+  #guides(fill=guide_legend(ncol=2))+
+  facet_wrap(Kernel~.,  ncol=4);
+
+gp1
+```
+
+```{r fig.width=16, fig.height=4}
+
+
+#df1 <- df_traces  %>% filter(str_detect(Name, 'matMul')) %>%
+#  group_by(ResourceId,Name,Origin) %>% summarize(sum=sum(Duration));
+df1 <- df_traces %>% group_by(ResourceId,Name,Origin) %>% summarize(sum=sum(Duration));
+#k
+gp1 <- df1 %>%
+  ggplot(aes(x=Origin, y=sum, fill=as.factor(Name)))+
+  geom_bar(stat="identity")+
+  #scale_fill_brewer(palette = "Set1") +
+  scale_fill_manual(values = mycolors) +
+  ggtitle("Kernel execution time")+
+  ylab("Time (ms)")+
+  #ggtitle(paste(o))+
+  #ylim(0,110)+
+  theme_bw();
+
+df2 <- df_traces  %>% filter(str_detect(Name, 'memcpy')) %>%
+  group_by(ResourceId,Name,Origin) %>% summarize(Data=sum(Size),Time=sum(Duration));
+gp2 <- df2 %>%
+  ggplot(aes(x=Origin, y=Time, fill=as.factor(Name)))+
+  geom_bar(stat="identity")+
+  #scale_fill_brewer(palette = "Set1") +
+  scale_fill_manual(values = mycolors) +
+  ggtitle("Execution time in transfers")+
+  ylab("Time (ms)")+
+  #ylim(0,110)+
+  theme_bw();
+gp1
+gp2
+grid.arrange(gp1, gp2, ncol = 2) ;
+```
+
+```{r fig.width=8, fig.height=4}
+
+
+##GANTs
+makegdf_activity <- function( df )
+{
+  # A way to compute activity:
+  dfStart <- data.frame( Date=df$Start, Value=1 );
+  dfEnd <- data.frame( Date=df$End, Value=-1 );
+  R<-rbind(dfStart,dfEnd);
+  dfActivity <- R[order(R$Date),];
+  dfActivity$Cumul = cumsum(dfActivity$Value);
+  v <- dfActivity$Date[2:length(dfActivity$Date)];
+  v[length(dfActivity$Date)]=0;
+  dfActivity$DateP1<-v;
+  dfActivity;
+}
+
+
+makegantt_activity <- function( df )
+{
+  # A way to compute activity:
+  dfActivity <- makegdf_activity(df)
+
+  gp  <- ggplot() +
+  theme_bw(base_size=10) +
+   theme (
+       legend.position = "right"
+   ) +
+   #xlab("Time [s]") +
+   ylab("Thread Identification") +
+   #scale_fill_gradientn(colours = rainbow(192))+
+   #coord_cartesian(xlim=c(Tmin,Tmax)) +
+   #coord_cartesian(ylim=c(0,14)) +
+   #guides(fill = guide_legend(nrow = 1)) +
+   geom_rect(data=dfActivity, alpha=1, aes(
+                                 xmin=Date,
+                                 xmax=DateP1,
+                                 ymin=Cumul,
+                                 ymax=0),
+                             col="black" )+
+   ylim(0,20);
+}
+
+gps <- list();
+i <- 1;
+for(o in unique(df_traces$Origin)){
+  df <- df_traces %>% filter(Origin==o) #%>% filter(str_detect(Name, 'matMul'));
+  gp1 <- makegantt_activity(df);
+  gp1 <- gp1+ggtitle(paste(o, "kernel Activity"));
+  #
+  gps[[i]] <- gp1;
+  i <- i+1;
+}
+grid.arrange(grobs = gps, ncol = 2) ;
+
+```
+
+This calculates 1 - Tactivity / (Tspan*8)
+```{r}
+
+
+for(o in unique(df_traces$Origin)){
+  df <- df_traces %>% filter (Origin==o);
+  Tmin <- min(df$Start);
+  Tmax <- max(df$End);
+  Tspan <- (Tmax-Tmin)*8;
+  df <- df_traces %>% filter (Origin==o) # %>% filter(str_detect(Name, 'matMul'));
+  Tall <-  sum(df$Duration);
+  ratio <- 1 - Tall/Tspan;
+  #print(paste(o, Tmax, Tall, Tspan, ratio));
+  print(paste(o, ratio));
+}
+```
+
+This calculates Toverlap = Tkernel / (Tspan*8).
+```{r}
+
+
+for(o in unique(df_traces$Origin)){
+  df <- df_traces %>% filter (Origin==o);
+  Tmin <- min(df$Start);
+  Tmax <- max(df$End);
+  Tspan <- (Tmax-Tmin);
+  df <- df_traces %>% filter (Origin==o) %>% #filter(str_detect(Name, 'volta'));
+  Tkernel <-  sum(df$Duration);
+  df <- df_traces %>% filter (Origin==o) %>% filter(str_detect(Name, 'memcpy'));
+  Tmemcpy <-  sum(df$Duration);
+  Tall <- Tkernel+Tmemcpy;
+  #Toverlap <- Tkernel / (Tspan*8);
+  Toverlap <- 1 - Tall / (Tspan*8);
+  #ratio <- 1 - Tall/Tspan;
+  print(paste(o, Toverlap));
+}
+```
+
+This code puts each event in a task group and agregate states with a threshold of 2ms.
+```{r}
+
+
+df_tasks <- data.frame();
+threshold <- 2.0;
+for(o in unique(df_traces$Origin)){
+  df1 <- df_traces %>% filter (Origin==o);
+  for(d in unique(df1$ResourceId)){
+    df2 <- df1 %>% filter (ResourceId==d);
+    df <- df2[order(df2$Start),];
+    df$TaskID <- 1;
+    taskid <- 1;
+    for(i in 2:nrow(df)) {
+      row <- df[i,];
+      prev <- df[i-1,];
+      if(row$Start > (prev$End+threshold)){
+        taskid <- taskid +1;
+      }
+      df[i,]$TaskID <- taskid;
+      # do stuff with row
+    }
+    df_tasks <- rbindlist(list(df_tasks, df));
+  }
+}
+```
+
+This gantt shows tasks groups considering overlap operations as one.
+```{r fig.width=14, fig.height=8}
+
+
+df_groups <- df_tasks %>% group_by(ResourceId,Origin,TaskID) %>% summarise(Start=min(Start), End=max(End), Duration=max(End)-min(Start));
+#head(df_groups);
+
+gp <- df_groups %>% #filter(Origin=="BLASX") %>%
+    ggplot()+
+    theme_bw(base_size=10) +
+   ylab("GPU Identification") +
+   scale_fill_brewer(palette = "Set1") +
+#    coord_cartesian(xlim=c(Tmin,Tmax)) +
+    geom_segment(aes(color=Origin,
+                                 x=Start,
+                                 xend=End,
+                                 y=factor(ResourceId),
+                                 yend=factor(ResourceId)), size=4)+
+#    geom_rect(alpha=1, aes(fill=Name,
+#                                 xmin=Start,
+#                                 xmax=End,
+#                                 ymin=ResourceId,
+#                                 ymax=ResourceId+0.9))+
+    facet_wrap(Origin~., ncol=1);
+    #scale_y_reverse();
+gp
+```
+
+This considers overlaped operations with 1 - Tactivity/ (Tspan*8)
+```{r}

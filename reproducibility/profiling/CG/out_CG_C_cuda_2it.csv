@@ -1,0 +1,212 @@
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","SrcMemType","DstMemType","Device","Context","Stream","Name","Correlation_ID"
+0.705794,0.010240,147,1,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_one(double*, double*, double*, double*, double*)",457
+0.705806,0.006304,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_two(double*, double*, double*)",458
+0.705816,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",459
+0.705839,0.953691,150000,1,1,64,1,1,18,0,0.500000,,,,,"TITAN V (0)","1","7","gpu_kernel_three(int*, int*, double*, double*, double*)",460
+0.706794,0.007488,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_four(double*, double*, double*, double*)",461
+0.706810,0.001792,,,,,,,,,,0.004471,2.436406,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",462
+0.706838,0.007744,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_1(double, double*, double*)",463
+0.706848,0.007488,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_2(double, double*, double*)",464
+0.706858,0.006112,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_six(double*, double*)",465
+0.706869,0.001856,,,,,,,,,,0.004471,2.352392,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",466
+0.706892,0.004672,293,1,1,512,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_seven(double, double*, double*)",467
+0.706904,0.952060,150000,1,1,64,1,1,18,0,0.500000,,,,,"TITAN V (0)","1","7","gpu_kernel_three(int*, int*, double*, double*, double*)",468
+0.707856,0.007424,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_four(double*, double*, double*, double*)",469
+0.707867,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",470
+0.707892,0.007744,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_1(double, double*, double*)",471
+0.707903,0.008064,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_2(double, double*, double*)",472
+0.707914,0.005952,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_six(double*, double*)",473
+0.707924,0.001696,,,,,,,,,,0.004471,2.574316,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",474
+0.707947,0.004640,293,1,1,512,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_seven(double, double*, double*)",475
+0.707958,0.961083,150000,1,1,64,1,1,18,0,0.500000,,,,,"TITAN V (0)","1","7","gpu_kernel_three(int*, int*, double*, double*, double*)",476
+0.708920,0.007456,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_four(double*, double*, double*, double*)",477
+0.708928,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",478
+0.708951,0.007808,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_1(double, double*, double*)",479
+0.708961,0.007968,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_2(double, double*, double*)",480
+0.708971,0.005952,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_six(double*, double*)",481
+0.708982,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",482
+0.709004,0.004672,293,1,1,512,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_seven(double, double*, double*)",483
+0.709015,0.952763,150000,1,1,64,1,1,18,0,0.500000,,,,,"TITAN V (0)","1","7","gpu_kernel_three(int*, int*, double*, double*, double*)",484
+0.709969,0.007488,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_four(double*, double*, double*, double*)",485
+0.709981,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",486
+0.710008,0.007744,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_1(double, double*, double*)",487
+0.710018,0.008224,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_2(double, double*, double*)",488
+0.710029,0.005952,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_six(double*, double*)",489
+0.710039,0.001696,,,,,,,,,,0.004471,2.574316,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",490
+0.710061,0.004608,293,1,1,512,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_seven(double, double*, double*)",491
+0.710073,0.954843,150000,1,1,64,1,1,18,0,0.500000,,,,,"TITAN V (0)","1","7","gpu_kernel_three(int*, int*, double*, double*, double*)",492
+0.711028,0.007520,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_four(double*, double*, double*, double*)",493
+0.711041,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",494
+0.711066,0.015904,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_1(double, double*, double*)",495
+0.711089,0.008224,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_2(double, double*, double*)",496
+0.711100,0.005984,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_six(double*, double*)",497
+0.711110,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",498
+0.711134,0.004608,293,1,1,512,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_seven(double, double*, double*)",499
+0.711144,0.951771,150000,1,1,64,1,1,18,0,0.500000,,,,,"TITAN V (0)","1","7","gpu_kernel_three(int*, int*, double*, double*, double*)",500
+0.712097,0.007648,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_four(double*, double*, double*, double*)",501
+0.712105,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",502
+0.712129,0.007744,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_1(double, double*, double*)",503
+0.712140,0.007776,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_2(double, double*, double*)",504
+0.712151,0.005952,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_six(double*, double*)",505
+0.712161,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",506
+0.712183,0.004608,293,1,1,512,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_seven(double, double*, double*)",507
+0.712194,0.961403,150000,1,1,64,1,1,18,0,0.500000,,,,,"TITAN V (0)","1","7","gpu_kernel_three(int*, int*, double*, double*, double*)",508
+0.713156,0.007488,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_four(double*, double*, double*, double*)",509
+0.713170,0.001696,,,,,,,,,,0.004471,2.574316,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",510
+0.713197,0.007744,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_1(double, double*, double*)",511
+0.713207,0.007776,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_2(double, double*, double*)",512
+0.713217,0.005952,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_six(double*, double*)",513
+0.713228,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",514
+0.713251,0.004672,293,1,1,512,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_seven(double, double*, double*)",515
+0.713261,0.962171,150000,1,1,64,1,1,18,0,0.500000,,,,,"TITAN V (0)","1","7","gpu_kernel_three(int*, int*, double*, double*, double*)",516
+0.714225,0.007456,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_four(double*, double*, double*, double*)",517
+0.714233,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",518
+0.714262,0.007744,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_1(double, double*, double*)",519
+0.714272,0.008000,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_2(double, double*, double*)",520
+0.714283,0.005920,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_six(double*, double*)",521
+0.714293,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",522
+0.714316,0.004640,293,1,1,512,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_seven(double, double*, double*)",523
+0.714326,0.961628,150000,1,1,64,1,1,18,0,0.500000,,,,,"TITAN V (0)","1","7","gpu_kernel_three(int*, int*, double*, double*, double*)",524
+0.715289,0.007456,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_four(double*, double*, double*, double*)",525
+0.715298,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",526
+0.715324,0.007744,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_1(double, double*, double*)",527
+0.715335,0.007840,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_2(double, double*, double*)",528
+0.715345,0.005920,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_six(double*, double*)",529
+0.715355,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",530
+0.715378,0.004608,293,1,1,512,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_seven(double, double*, double*)",531
+0.715388,0.961531,150000,1,1,64,1,1,18,0,0.500000,,,,,"TITAN V (0)","1","7","gpu_kernel_three(int*, int*, double*, double*, double*)",532
+0.716351,0.007488,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_four(double*, double*, double*, double*)",533
+0.716365,0.001696,,,,,,,,,,0.004471,2.574316,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",534
+0.716395,0.007712,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_1(double, double*, double*)",535
+0.716405,0.007872,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_2(double, double*, double*)",536
+0.716415,0.006048,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_six(double*, double*)",537
+0.716426,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",538
+0.716448,0.004640,293,1,1,512,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_seven(double, double*, double*)",539
+0.716460,0.960155,150000,1,1,64,1,1,18,0,0.500000,,,,,"TITAN V (0)","1","7","gpu_kernel_three(int*, int*, double*, double*, double*)",540
+0.717421,0.007488,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_four(double*, double*, double*, double*)",541
+0.717437,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",542
+0.717467,0.007744,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_1(double, double*, double*)",543
+0.717477,0.007808,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_2(double, double*, double*)",544
+0.717486,0.005920,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_six(double*, double*)",545
+0.717497,0.001696,,,,,,,,,,0.004471,2.574316,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",546
+0.717520,0.004640,293,1,1,512,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_seven(double, double*, double*)",547
+0.717530,0.960796,150000,1,1,64,1,1,18,0,0.500000,,,,,"TITAN V (0)","1","7","gpu_kernel_three(int*, int*, double*, double*, double*)",548
+0.718492,0.007616,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_four(double*, double*, double*, double*)",549
+0.718500,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",550
+0.718527,0.007744,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_1(double, double*, double*)",551
+0.718538,0.008064,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_2(double, double*, double*)",552
+0.718549,0.006080,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_six(double*, double*)",553
+0.718558,0.001728,,,,,,,,,,0.004471,2.526644,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",554
+0.718581,0.004608,293,1,1,512,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_seven(double, double*, double*)",555
+0.718591,0.963323,150000,1,1,64,1,1,18,0,0.500000,,,,,"TITAN V (0)","1","7","gpu_kernel_three(int*, int*, double*, double*, double*)",556
+0.719555,0.007456,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_four(double*, double*, double*, double*)",557
+0.719563,0.001696,,,,,,,,,,0.004471,2.574316,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",558
+0.719591,0.007776,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_1(double, double*, double*)",559
+0.719601,0.008000,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_2(double, double*, double*)",560
+0.719611,0.005984,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_six(double*, double*)",561
+0.719621,0.001792,,,,,,,,,,0.004471,2.436406,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",562
+0.719644,0.004704,293,1,1,512,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_seven(double, double*, double*)",563
+0.719655,0.960955,150000,1,1,64,1,1,18,0,0.500000,,,,,"TITAN V (0)","1","7","gpu_kernel_three(int*, int*, double*, double*, double*)",564
+0.720617,0.007552,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_four(double*, double*, double*, double*)",565
+0.720632,0.001696,,,,,,,,,,0.004471,2.574316,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",566
+0.720663,0.007744,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_1(double, double*, double*)",567
+0.720673,0.007904,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_2(double, double*, double*)",568
+0.720684,0.005856,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_six(double*, double*)",569
+0.720694,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",570
+0.720717,0.004672,293,1,1,512,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_seven(double, double*, double*)",571
+0.720728,0.961372,150000,1,1,64,1,1,18,0,0.500000,,,,,"TITAN V (0)","1","7","gpu_kernel_three(int*, int*, double*, double*, double*)",572
+0.721690,0.007648,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_four(double*, double*, double*, double*)",573
+0.721700,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",574
+0.721727,0.007775,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_1(double, double*, double*)",575
+0.721737,0.008416,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_2(double, double*, double*)",576
+0.721747,0.006016,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_six(double*, double*)",577
+0.721758,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",578
+0.721780,0.004640,293,1,1,512,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_seven(double, double*, double*)",579
+0.721791,0.960731,150000,1,1,64,1,1,18,0,0.500000,,,,,"TITAN V (0)","1","7","gpu_kernel_three(int*, int*, double*, double*, double*)",580
+0.722753,0.007424,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_four(double*, double*, double*, double*)",581
+0.722765,0.001696,,,,,,,,,,0.004471,2.574316,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",582
+0.722792,0.007776,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_1(double, double*, double*)",583
+0.722802,0.007904,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_2(double, double*, double*)",584
+0.722813,0.006048,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_six(double*, double*)",585
+0.722822,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",586
+0.722854,0.004608,293,1,1,512,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_seven(double, double*, double*)",587
+0.722865,0.953307,150000,1,1,64,1,1,18,0,0.500000,,,,,"TITAN V (0)","1","7","gpu_kernel_three(int*, int*, double*, double*, double*)",588
+0.723819,0.007488,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_four(double*, double*, double*, double*)",589
+0.723828,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",590
+0.723852,0.007744,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_1(double, double*, double*)",591
+0.723862,0.007776,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_2(double, double*, double*)",592
+0.723873,0.006048,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_six(double*, double*)",593
+0.723884,0.001696,,,,,,,,,,0.004471,2.574316,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",594
+0.723907,0.004640,293,1,1,512,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_seven(double, double*, double*)",595
+0.723918,0.961147,150000,1,1,64,1,1,18,0,0.500000,,,,,"TITAN V (0)","1","7","gpu_kernel_three(int*, int*, double*, double*, double*)",596
+0.724880,0.007520,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_four(double*, double*, double*, double*)",597
+0.724894,0.001696,,,,,,,,,,0.004471,2.574316,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",598
+0.724920,0.007776,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_1(double, double*, double*)",599
+0.724931,0.008000,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_2(double, double*, double*)",600
+0.724942,0.005983,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_six(double*, double*)",601
+0.724952,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",602
+0.724975,0.004640,293,1,1,512,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_seven(double, double*, double*)",603
+0.724985,0.959676,150000,1,1,64,1,1,18,0,0.500000,,,,,"TITAN V (0)","1","7","gpu_kernel_three(int*, int*, double*, double*, double*)",604
+0.725946,0.007615,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_four(double*, double*, double*, double*)",605
+0.725955,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",606
+0.725982,0.007744,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_1(double, double*, double*)",607
+0.725993,0.008128,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_2(double, double*, double*)",608
+0.726003,0.005984,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_six(double*, double*)",609
+0.726013,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",610
+0.726036,0.004608,293,1,1,512,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_seven(double, double*, double*)",611
+0.726046,0.953851,150000,1,1,64,1,1,18,0,0.500000,,,,,"TITAN V (0)","1","7","gpu_kernel_three(int*, int*, double*, double*, double*)",612
+0.727001,0.007488,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_four(double*, double*, double*, double*)",613
+0.727012,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",614
+0.727036,0.007776,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_1(double, double*, double*)",615
+0.727046,0.007904,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_2(double, double*, double*)",616
+0.727057,0.005952,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_six(double*, double*)",617
+0.727066,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",618
+0.727090,0.004576,293,1,1,512,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_seven(double, double*, double*)",619
+0.727100,0.959771,150000,1,1,64,1,1,18,0,0.500000,,,,,"TITAN V (0)","1","7","gpu_kernel_three(int*, int*, double*, double*, double*)",620
+0.728061,0.007456,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_four(double*, double*, double*, double*)",621
+0.728071,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",622
+0.728097,0.007712,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_1(double, double*, double*)",623
+0.728108,0.007808,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_2(double, double*, double*)",624
+0.728118,0.005888,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_six(double*, double*)",625
+0.728130,0.001792,,,,,,,,,,0.004471,2.436406,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",626
+0.728153,0.004607,293,1,1,512,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_seven(double, double*, double*)",627
+0.728164,0.960604,150000,1,1,64,1,1,18,0,0.500000,,,,,"TITAN V (0)","1","7","gpu_kernel_three(int*, int*, double*, double*, double*)",628
+0.729125,0.007456,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_four(double*, double*, double*, double*)",629
+0.729140,0.001696,,,,,,,,,,0.004471,2.574316,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",630
+0.729168,0.007712,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_1(double, double*, double*)",631
+0.729178,0.008096,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_2(double, double*, double*)",632
+0.729189,0.005920,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_six(double*, double*)",633
+0.729198,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",634
+0.729222,0.004576,293,1,1,512,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_seven(double, double*, double*)",635
+0.729232,0.960891,150000,1,1,64,1,1,18,0,0.500000,,,,,"TITAN V (0)","1","7","gpu_kernel_three(int*, int*, double*, double*, double*)",636
+0.730194,0.007648,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_four(double*, double*, double*, double*)",637
+0.730202,0.001696,,,,,,,,,,0.004471,2.574316,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",638
+0.730233,0.007744,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_1(double, double*, double*)",639
+0.730243,0.008064,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_2(double, double*, double*)",640
+0.730253,0.006112,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_six(double*, double*)",641
+0.730263,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",642
+0.730287,0.004608,293,1,1,512,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_seven(double, double*, double*)",643
+0.730297,0.959707,150000,1,1,64,1,1,18,0,0.500000,,,,,"TITAN V (0)","1","7","gpu_kernel_three(int*, int*, double*, double*, double*)",644
+0.731258,0.007616,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_four(double*, double*, double*, double*)",645
+0.731274,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",646
+0.731300,0.007776,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_1(double, double*, double*)",647
+0.731311,0.008128,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_2(double, double*, double*)",648
+0.731322,0.006048,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_six(double*, double*)",649
+0.731332,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",650
+0.731355,0.004640,293,1,1,512,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_seven(double, double*, double*)",651
+0.731365,0.961019,150000,1,1,64,1,1,18,0,0.500000,,,,,"TITAN V (0)","1","7","gpu_kernel_three(int*, int*, double*, double*, double*)",652
+0.732327,0.007456,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_four(double*, double*, double*, double*)",653
+0.732336,0.001696,,,,,,,,,,0.004471,2.574316,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",654
+0.732363,0.007904,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_1(double, double*, double*)",655
+0.732374,0.007840,2344,1,1,64,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_five_2(double, double*, double*)",656
+0.732384,0.005952,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_six(double*, double*)",657
+0.732395,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",658
+0.732418,0.004608,293,1,1,512,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_seven(double, double*, double*)",659
+0.732428,0.959995,150000,1,1,64,1,1,18,0,0.500000,,,,,"TITAN V (0)","1","7","gpu_kernel_eight(int*, int*, double*, double*, double*)",660
+0.733389,0.009696,293,1,1,512,1,1,16,0,4.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_nine(double*, double*, double*, double*)",661
+0.733405,0.001760,,,,,,,,,,0.002235,1.240352,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",662
+0.733426,0.006464,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_ten_1(double*, double*, double*)",663
+0.733437,0.005824,586,1,1,256,1,1,16,0,2.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_ten_2(double*, double*, double*)",664
+0.733448,0.001696,,,,,,,,,,0.004471,2.574316,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",665
+0.733467,0.001664,,,,,,,,,,0.004471,2.623822,"Device","Pageable","TITAN V (0)","1","7","[CUDA memcpy DtoH]",666
+0.733490,0.004160,293,1,1,512,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","gpu_kernel_eleven(double, double*, double*)",667

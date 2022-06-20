@@ -1,0 +1,121 @@
+"Start","Duration","Grid X","Grid Y","Grid Z","Block X","Block Y","Block Z","Registers Per Thread","Static SMem","Dynamic SMem","Size","Throughput","SrcMemType","DstMemType","Device","Context","Stream","Name","Correlation_ID"
+1.775947,5.281123,256,256,1,257,1,1,32,0,8.046875,,,,,"TITAN V (0)","1","7","rprj3_gpu_kernel(double*, double*, int, int, int, int, int, int, int, int, int, int)",359
+1.781229,0.043904,1,256,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_1(double*, int, int, int, int)",360
+1.781274,0.007936,1,256,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_2(double*, int, int, int, int)",361
+1.781283,0.006816,1,258,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_3(double*, int, int, int, int)",362
+1.781290,0.422525,128,128,1,129,1,1,32,0,8.046875,,,,,"TITAN V (0)","1","7","rprj3_gpu_kernel(double*, double*, int, int, int, int, int, int, int, int, int, int)",363
+1.781714,0.009856,1,128,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_1(double*, int, int, int, int)",364
+1.781724,0.004736,1,128,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_2(double*, int, int, int, int)",365
+1.781730,0.004288,1,130,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_3(double*, int, int, int, int)",366
+1.781735,0.044928,64,64,1,65,1,1,32,0,8.046875,,,,,"TITAN V (0)","1","7","rprj3_gpu_kernel(double*, double*, int, int, int, int, int, int, int, int, int, int)",367
+1.781781,0.004288,1,64,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_1(double*, int, int, int, int)",368
+1.781786,0.003904,1,64,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_2(double*, int, int, int, int)",369
+1.781791,0.003328,1,66,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_3(double*, int, int, int, int)",370
+1.781795,0.008480,32,32,1,33,1,1,32,0,8.046875,,,,,"TITAN V (0)","1","7","rprj3_gpu_kernel(double*, double*, int, int, int, int, int, int, int, int, int, int)",371
+1.781805,0.003264,1,32,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_1(double*, int, int, int, int)",372
+1.781809,0.002976,1,32,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_2(double*, int, int, int, int)",373
+1.781813,0.002976,1,34,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_3(double*, int, int, int, int)",374
+1.781817,0.003712,16,16,1,17,1,1,32,0,8.046875,,,,,"TITAN V (0)","1","7","rprj3_gpu_kernel(double*, double*, int, int, int, int, int, int, int, int, int, int)",375
+1.781821,0.003040,1,16,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_1(double*, int, int, int, int)",376
+1.781825,0.003008,1,16,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_2(double*, int, int, int, int)",377
+1.781829,0.002944,1,18,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_3(double*, int, int, int, int)",378
+1.781833,0.003424,8,8,1,9,1,1,32,0,8.046875,,,,,"TITAN V (0)","1","7","rprj3_gpu_kernel(double*, double*, int, int, int, int, int, int, int, int, int, int)",379
+1.781837,0.003008,1,8,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_1(double*, int, int, int, int)",380
+1.781841,0.002944,1,8,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_2(double*, int, int, int, int)",381
+1.781845,0.002976,1,10,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_3(double*, int, int, int, int)",382
+1.781849,0.003264,4,4,1,5,1,1,32,0,8.046875,,,,,"TITAN V (0)","1","7","rprj3_gpu_kernel(double*, double*, int, int, int, int, int, int, int, int, int, int)",383
+1.781853,0.002944,1,4,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_1(double*, int, int, int, int)",384
+1.781857,0.002944,1,4,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_2(double*, int, int, int, int)",385
+1.781860,0.002976,1,6,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_3(double*, int, int, int, int)",386
+1.781864,0.003232,2,2,1,3,1,1,32,0,8.046875,,,,,"TITAN V (0)","1","7","rprj3_gpu_kernel(double*, double*, int, int, int, int, int, int, int, int, int, int)",387
+1.781868,0.002912,1,2,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_1(double*, int, int, int, int)",388
+1.781872,0.002912,1,2,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_2(double*, int, int, int, int)",389
+1.781876,0.002880,1,4,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_3(double*, int, int, int, int)",390
+1.781880,0.002464,1,1,1,128,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","zero3_gpu_kernel(double*, int, int, int, int)",391
+1.781883,0.003423,2,2,1,4,1,1,32,0,8.046875,,,,,"TITAN V (0)","1","7","psinv_gpu_kernel(double*, double*, double*, int, int, int, int)",392
+1.781887,0.002784,1,2,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_1(double*, int, int, int, int)",393
+1.781891,0.002880,1,2,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_2(double*, int, int, int, int)",394
+1.781895,0.002912,1,4,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_3(double*, int, int, int, int)",395
+1.781899,0.002496,2,1,1,128,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","zero3_gpu_kernel(double*, int, int, int, int)",396
+1.781902,0.003552,3,3,1,4,1,1,26,0,12.070312,,,,,"TITAN V (0)","1","7","interp_gpu_kernel(double*, double*, int, int, int, int, int, int, int)",397
+1.781906,0.003264,4,4,1,6,1,1,32,0,8.046875,,,,,"TITAN V (0)","1","7","resid_gpu_kernel(double*, double*, double*, double*, int, int, int, int)",398
+1.781910,0.002848,1,4,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_1(double*, int, int, int, int)",399
+1.781914,0.002912,1,4,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_2(double*, int, int, int, int)",400
+1.781918,0.002912,1,6,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_3(double*, int, int, int, int)",401
+1.781922,0.003264,4,4,1,6,1,1,32,0,8.046875,,,,,"TITAN V (0)","1","7","psinv_gpu_kernel(double*, double*, double*, int, int, int, int)",402
+1.781926,0.002976,1,4,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_1(double*, int, int, int, int)",403
+1.781930,0.002944,1,4,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_2(double*, int, int, int, int)",404
+1.781934,0.002944,1,6,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_3(double*, int, int, int, int)",405
+1.781937,0.002528,8,1,1,128,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","zero3_gpu_kernel(double*, int, int, int, int)",406
+1.781941,0.003616,5,5,1,6,1,1,26,0,12.070312,,,,,"TITAN V (0)","1","7","interp_gpu_kernel(double*, double*, int, int, int, int, int, int, int)",407
+1.781945,0.003328,8,8,1,10,1,1,32,0,8.046875,,,,,"TITAN V (0)","1","7","resid_gpu_kernel(double*, double*, double*, double*, int, int, int, int)",408
+1.781950,0.002816,1,8,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_1(double*, int, int, int, int)",409
+1.781953,0.003008,1,8,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_2(double*, int, int, int, int)",410
+1.781957,0.002912,1,10,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_3(double*, int, int, int, int)",411
+1.781961,0.003328,8,8,1,10,1,1,32,0,8.046875,,,,,"TITAN V (0)","1","7","psinv_gpu_kernel(double*, double*, double*, int, int, int, int)",412
+1.781965,0.002816,1,8,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_1(double*, int, int, int, int)",413
+1.781969,0.002976,1,8,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_2(double*, int, int, int, int)",414
+1.781973,0.002944,1,10,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_3(double*, int, int, int, int)",415
+1.781977,0.002624,46,1,1,128,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","zero3_gpu_kernel(double*, int, int, int, int)",416
+1.781980,0.003712,9,9,1,10,1,1,26,0,12.070312,,,,,"TITAN V (0)","1","7","interp_gpu_kernel(double*, double*, int, int, int, int, int, int, int)",417
+1.781985,0.003648,16,16,1,18,1,1,32,0,8.046875,,,,,"TITAN V (0)","1","7","resid_gpu_kernel(double*, double*, double*, double*, int, int, int, int)",418
+1.781989,0.002816,1,16,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_1(double*, int, int, int, int)",419
+1.781993,0.003008,1,16,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_2(double*, int, int, int, int)",420
+1.781997,0.002976,1,18,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_3(double*, int, int, int, int)",421
+1.782000,0.003712,16,16,1,18,1,1,32,0,8.046875,,,,,"TITAN V (0)","1","7","psinv_gpu_kernel(double*, double*, double*, int, int, int, int)",422
+1.782005,0.002848,1,16,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_1(double*, int, int, int, int)",423
+1.782009,0.002976,1,16,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_2(double*, int, int, int, int)",424
+1.782013,0.002976,1,18,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_3(double*, int, int, int, int)",425
+1.782016,0.003136,308,1,1,128,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","zero3_gpu_kernel(double*, int, int, int, int)",426
+1.782020,0.004192,17,17,1,18,1,1,26,0,12.070312,,,,,"TITAN V (0)","1","7","interp_gpu_kernel(double*, double*, int, int, int, int, int, int, int)",427
+1.782025,0.005632,32,32,1,34,1,1,32,0,8.046875,,,,,"TITAN V (0)","1","7","resid_gpu_kernel(double*, double*, double*, double*, int, int, int, int)",428
+1.782032,0.002944,1,32,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_1(double*, int, int, int, int)",429
+1.782035,0.002976,1,32,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_2(double*, int, int, int, int)",430
+1.782039,0.002976,1,34,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_3(double*, int, int, int, int)",431
+1.782043,0.005824,32,32,1,34,1,1,32,0,8.046875,,,,,"TITAN V (0)","1","7","psinv_gpu_kernel(double*, double*, double*, int, int, int, int)",432
+1.782050,0.002944,1,32,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_1(double*, int, int, int, int)",433
+1.782054,0.002976,1,32,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_2(double*, int, int, int, int)",434
+1.782057,0.002976,1,34,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_3(double*, int, int, int, int)",435
+1.782061,0.006336,2247,1,1,128,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","zero3_gpu_kernel(double*, int, int, int, int)",436
+1.782068,0.009535,33,33,1,34,1,1,26,0,12.070312,,,,,"TITAN V (0)","1","7","interp_gpu_kernel(double*, double*, int, int, int, int, int, int, int)",437
+1.782079,0.016704,64,64,1,66,1,1,32,0,8.046875,,,,,"TITAN V (0)","1","7","resid_gpu_kernel(double*, double*, double*, double*, int, int, int, int)",438
+1.782097,0.003808,1,64,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_1(double*, int, int, int, int)",439
+1.782101,0.003072,1,64,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_2(double*, int, int, int, int)",440
+1.782105,0.003104,1,66,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_3(double*, int, int, int, int)",441
+1.782109,0.016352,64,64,1,66,1,1,32,0,8.046875,,,,,"TITAN V (0)","1","7","psinv_gpu_kernel(double*, double*, double*, int, int, int, int)",442
+1.782127,0.003712,1,64,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_1(double*, int, int, int, int)",443
+1.782131,0.003072,1,64,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_2(double*, int, int, int, int)",444
+1.782135,0.003136,1,66,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_3(double*, int, int, int, int)",445
+1.782139,0.030496,17165,1,1,128,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","zero3_gpu_kernel(double*, int, int, int, int)",446
+1.782171,0.079744,65,65,1,66,1,1,26,0,12.070312,,,,,"TITAN V (0)","1","7","interp_gpu_kernel(double*, double*, int, int, int, int, int, int, int)",447
+1.782251,0.102463,128,128,1,130,1,1,32,0,8.046875,,,,,"TITAN V (0)","1","7","resid_gpu_kernel(double*, double*, double*, double*, int, int, int, int)",448
+1.782354,0.008768,1,128,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_1(double*, int, int, int, int)",449
+1.782364,0.005120,1,128,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_2(double*, int, int, int, int)",450
+1.782370,0.004128,1,130,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_3(double*, int, int, int, int)",451
+1.782375,0.099519,128,128,1,130,1,1,32,0,8.046875,,,,,"TITAN V (0)","1","7","psinv_gpu_kernel(double*, double*, double*, int, int, int, int)",452
+1.782476,0.008768,1,128,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_1(double*, int, int, int, int)",453
+1.782485,0.004608,1,128,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_2(double*, int, int, int, int)",454
+1.782491,0.003936,1,130,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_3(double*, int, int, int, int)",455
+1.782496,0.219679,134169,1,1,128,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","zero3_gpu_kernel(double*, int, int, int, int)",456
+1.782716,0.555005,129,129,1,130,1,1,26,0,12.070312,,,,,"TITAN V (0)","1","7","interp_gpu_kernel(double*, double*, int, int, int, int, int, int, int)",457
+1.783272,0.737372,256,256,1,258,1,1,32,0,8.046875,,,,,"TITAN V (0)","1","7","resid_gpu_kernel(double*, double*, double*, double*, int, int, int, int)",458
+1.784010,0.046304,1,256,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_1(double*, int, int, int, int)",459
+1.784058,0.007584,1,256,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_2(double*, int, int, int, int)",460
+1.784066,0.006624,1,258,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_3(double*, int, int, int, int)",461
+1.784073,0.728476,256,256,1,258,1,1,32,0,8.046875,,,,,"TITAN V (0)","1","7","psinv_gpu_kernel(double*, double*, double*, int, int, int, int)",462
+1.784803,0.045375,1,256,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_1(double*, int, int, int, int)",463
+1.784849,0.008384,1,256,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_2(double*, int, int, int, int)",464
+1.784859,0.006688,1,258,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_3(double*, int, int, int, int)",465
+1.784866,4.594792,257,257,1,258,1,1,26,0,12.070312,,,,,"TITAN V (0)","1","7","interp_gpu_kernel(double*, double*, int, int, int, int, int, int, int)",466
+1.789462,10.435047,512,512,1,512,1,1,32,0,8.046875,,,,,"TITAN V (0)","1","7","resid_gpu_kernel(double*, double*, double*, double*, int, int, int, int)",467
+1.799897,0.290687,1,512,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_1(double*, int, int, int, int)",468
+1.800189,0.022176,1,512,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_2(double*, int, int, int, int)",469
+1.800212,0.018399,1,514,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_3(double*, int, int, int, int)",470
+1.800231,9.598029,512,512,1,514,1,1,32,0,8.046875,,,,,"TITAN V (0)","1","7","psinv_gpu_kernel(double*, double*, double*, int, int, int, int)",471
+1.809830,0.288830,1,512,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_1(double*, int, int, int, int)",472
+1.810120,0.023392,1,512,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_2(double*, int, int, int, int)",473
+1.810144,0.018496,1,514,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_3(double*, int, int, int, int)",474
+1.810164,10.439527,512,512,1,512,1,1,32,0,8.046875,,,,,"TITAN V (0)","1","7","resid_gpu_kernel(double*, double*, double*, double*, int, int, int, int)",475
+1.820604,0.290719,1,512,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_1(double*, int, int, int, int)",476
+1.820896,0.021408,1,512,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_2(double*, int, int, int, int)",477
+1.820918,0.018272,1,514,1,1024,1,1,16,0,0.000000,,,,,"TITAN V (0)","1","7","comm3_gpu_kernel_3(double*, int, int, int, int)",478
