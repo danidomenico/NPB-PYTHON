@@ -4,7 +4,9 @@ The NPB programs ([version 3.4.1](https://www.nas.nasa.gov/publications/npb.html
 We employed [Numba](https://numba.pydata.org/numba-doc/latest/cuda/index.html) environment to design the NPB CUDA programs in Python.
 
 ## How to cite this work
-Daniel Di Domenico, Gerson G. H. Cavalheiro, João V. F. Lina, **NAS Parallel Benchmark Kernels with Python: A performance and programming effort analysis focusing on GPUs**, *2022 30th Euromicro International Conference on Parallel, Distributed and Network-based Processing (PDP)*, 2022, pp. 26-33, doi: [10.1109/PDP55904.2022.00013](https://doi.org/10.1109/PDP55904.2022.00013)
+Daniel Di Domenico, Gerson G. H. Cavalheiro, João V. F. Lima, **NAS Parallel Benchmark Kernels with Python: A performance and programming effort analysis focusing on GPUs**, *2022 30th Euromicro International Conference on Parallel, Distributed and Network-based Processing (PDP)*, 2022, pp. 26-33, doi: [10.1109/PDP55904.2022.00013](https://doi.org/10.1109/PDP55904.2022.00013)
+
+Daniel Di Domenico, João V. F. Lima, & Gerson G. H. Cavalheiro. **NAS Parallel Benchmarks with Python: a performance and programming effort analysis focusing on GPUs**, *The Journal of Supercomputing (2022)*, doi: [10.1007/s11227-022-04932-3](https://doi.org/10.1007/s11227-022-04932-3)
 
 ### Folders inside the  project:
 
