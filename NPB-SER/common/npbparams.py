@@ -28,6 +28,7 @@
 
 # This utility configures a NPB to be executed for a specific class
 import sys
+sys.path = [p for p in sys.path if p is not None]
 import math
 
 # this is the master version number for this set of 
