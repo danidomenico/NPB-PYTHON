@@ -156,17 +156,12 @@ def conj_grad(colidx,
     rho = 0.0
 
     #initialize the CG algorithm 
-    q[:naa+1].zero_()
-    z[:naa+1].zero_()
-    r[:naa+1].copy_(x[:naa+1])
-    p[:naa+1].copy_(r[:naa+1])
 
     # --------------------------------------------------------------------
     # rho = r.r
     # now, obtain the norm of r: First, sum squares of r elements locally...
     # --------------------------------------------------------------------
-    end = lastcol - firstcol + 1
-    rho = torch.dot(r[:end], r[:end]).item()
+    rho = torch.dot(r, r).item()
 
     #the conj grad iteration loop
     for cgit in range(1, cgitmax+1):
@@ -181,14 +176,12 @@ def conj_grad(colidx,
         # unrolled-by-two version is some 10% faster.  
         # the unrolled-by-8 version below is significantly faster
         # on the Cray t3d - overall speed of code is 1.5 times faster.
-        end = lastrow - firstrow + 1
-        q[:end] = torch.mv(A_csr, p[:end])
+        q = torch.mv(A_csr, p)
 
         # --------------------------------------------------------------------
         # obtain p.q
         # --------------------------------------------------------------------
-        end = lastcol - firstcol + 1
-        d = torch.dot(p[:end], q[:end]).item()
+        d = torch.dot(p, q).item()
 
         # --------------------------------------------------------------------
         # obtain alpha = rho / (p.q)

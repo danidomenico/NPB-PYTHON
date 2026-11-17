@@ -35,7 +35,8 @@ import sys
 import os
 import numpy
 import math
-  
+from numba import njit
+
 # Local imports
 sys.path.append(sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'common')))
 import npbparams
@@ -141,6 +142,7 @@ def create_zeta_verify_value():
 # ---------------------------------------------------------------------
 #static void conj_grad(int colidx[], int rowstr[], double x[], double z[], 
 #double a[], double p[], double q[], double r[], double* rnorm)
+@njit
 def conj_grad(colidx,
             rowstr,
             x,
@@ -252,6 +254,7 @@ def conj_grad(colidx,
 # static void sparse(double a[], int colidx[], int rowstr[], int n, int nz, int nozer,
 #int arow[], int acol[][NONZER+1], double aelt[][NONZER+1], int firstrow, int lastrow,
 #int nzloc[], double rcond, double shift)
+@njit
 def sparse(a,
         colidx,
         rowstr,
@@ -394,6 +397,7 @@ def sparse(a,
 # scale a double precision number x in (0,1) by a power of 2 and chop it
 # ---------------------------------------------------------------------
 #static int icnvrt(double x, int ipwr2)
+@njit
 def icnvrt(x, ipwr2):
     return int(ipwr2 * x)
 #END icnvrt() 
@@ -404,6 +408,7 @@ def icnvrt(x, ipwr2):
 # nzv nonzeros to val
 # --------------------------------------------------------------------
 #static void vecset(int n, double v[], int iv[], int* nzv, int i, double val)
+@njit
 def vecset(n, v, iv, nzv, i, val):
     sett = False
     for k in range(nzv):
@@ -430,6 +435,7 @@ def vecset(n, v, iv, nzv, i, val):
 # reinitialization of mark on every one of the n calls to sprnvc
 # ---------------------------------------------------------------------
 #static void sprnvc(int n, int nz, int nn1, double v[], int iv[])
+@njit
 def sprnvc(n, nz, nn1, v, iv, tran_aux):
     nzv = 0
     vecelt = 0.0
@@ -492,6 +498,7 @@ def sprnvc(n, nz, nn1, v, iv, tran_aux):
 # ---------------------------------------------------------------------
 #static void makea(int n, int nz, double a[], int colidx[], int rowstr[], 
 #int firstrow, int lastrow, int firstcol, int lastcol, int arow[], int acol[][NONZER+1], double aelt[][NONZER+1], int iv[])
+@njit
 def makea(n,
         nz,
         a,
