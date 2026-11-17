@@ -182,7 +182,7 @@ def conj_grad(A_matrix, x, z, p, q, r):
 		rho = 0.0
 		scalarvecmul2(alpha, p[:naa], z[:naa])
 		scalarvecmul2(-alpha, q[:naa], r[:naa])
-		rho = torch.dot(r[:naa], r[:naa]).item()
+		rho = vecvecmul(r, r)
 		beta = rho / rho0
 		scalarvecmul1(beta, r[:naa], p[:naa])
 	matvecmul(A_matrix, z[:naa], r[:naa])
