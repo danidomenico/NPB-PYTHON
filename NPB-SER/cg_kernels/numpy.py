@@ -39,7 +39,7 @@ def cg(a_matrix, x, z, p, q, r, npbparams):
 
         norm_temp1 = 0.0
         norm_temp2 = 0.0
-        end = npbparams.naa
+        end = npbparams.NA
         
         for j in range(0, end):
             norm_temp1 = norm_temp1 + x[j] * z[j]   # vecvecmul(x, z)
