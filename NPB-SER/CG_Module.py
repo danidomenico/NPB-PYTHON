@@ -175,8 +175,8 @@ def conj_grad(A_matrix, x, z, p, q, r):
 	rho = vecvecmul(r[:naa], r[:naa])
 
 	for cgit in range(1, cgitmax+1):
-		q[:naa] = torch.mv(A_matrix, p[:naa])
-		d = torch.dot(p[:naa], q[:naa]).item()
+		matvecmul(A_matrix, p[:naa], q[:naa])
+		d = vecvecmul(p[:naa], q[:naa])
 		alpha = rho / d
 		rho0 = rho
 		rho = 0.0
@@ -185,7 +185,7 @@ def conj_grad(A_matrix, x, z, p, q, r):
 		rho = torch.dot(r[:naa], r[:naa]).item()
 		beta = rho / rho0
 		scalarvecmul1(beta, r[:naa], p[:naa])
-	r[:naa] = torch.mv(A_matrix, z[:naa])
+	matvecmul(A_matrix, z[:naa], r[:naa])
 
 	# ---------------------------------------------------------------------
 	# at this point, r contains A.z

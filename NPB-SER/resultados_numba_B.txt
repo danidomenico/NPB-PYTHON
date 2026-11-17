@@ -1,0 +1,5 @@
+ Time in seconds =                    80.58
+ Time in seconds =                   107.73
+ Time in seconds =                   132.42
+ Time in seconds =                   120.93
+ Time in seconds =                    79.93

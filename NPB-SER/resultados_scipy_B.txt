@@ -1,0 +1,5 @@
+ Time in seconds =                    56.32
+ Time in seconds =                    53.21
+ Time in seconds =                    50.82
+ Time in seconds =                    50.86
+ Time in seconds =                    50.87
