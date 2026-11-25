@@ -1,10 +1,22 @@
 #!/bin/bash
-CLASS="B"
 
-# Lista com o nome exato dos arquivos dos seus backends (sem o .py)
-BACKENDS=("numba" "scipy" "petsc" "jax" "torch")
+BACKENDS=("numba" "scipy" "petsc" "torch")
+RESULTS_DIR="results"
+mkdir -p "$RESULTS_DIR"
 
-# BLOQUEIO DE MULTITHREADING OCULTO
+if [ "$#" -eq 0 ]; then
+    ARGS=("S")
+else
+    ARGS=("$@")
+fi
+
+CLASSES=()
+for arg in "${ARGS[@]}"; do
+    for (( idx=0; idx<${#arg}; idx++ )); do
+        CLASSES+=("${arg:$idx:1}")
+    done
+done
+
 export OMP_NUM_THREADS=1
 export OPENBLAS_NUM_THREADS=1
 export MKL_NUM_THREADS=1
@@ -12,29 +24,22 @@ export VECLIB_MAXIMUM_THREADS=1
 export NUMEXPR_NUM_THREADS=1
 export JAX_PLATFORMS=cpu
 
-for BACKEND in "${BACKENDS[@]}"; do
-    OUTPUT_FILE="resultados_${BACKEND}_${CLASS}.txt"
-    
-    echo "======================================================"
-    echo "Iniciando 30 execuções para: $BACKEND (Classe $CLASS)"
-    echo "======================================================"
-    > $OUTPUT_FILE # Limpa o arquivo de resultados desse backend
+for CLASS in "${CLASSES[@]}"; do
+    for BACKEND in "${BACKENDS[@]}"; do
+        OUTPUT_FILE="${RESULTS_DIR}/${BACKEND}_${CLASS}.txt"
+        
+        echo "Iniciando 5 execuções para: $BACKEND (Classe $CLASS)"
+        > $OUTPUT_FILE # limpa o arquivo de resultados
 
-    for i in {1..5}; do
-        # Isola no núcleo 0, roda e filtra o tempo
-        taskset -c 0 python CG_modulate.py -c $CLASS -b $BACKEND | grep "Time in seconds" >> $OUTPUT_FILE
+        for i in {1..5}; do
+            taskset -c 1 python CG_Kernels.py -c $CLASS -b $BACKEND | grep "Time in seconds" >> $OUTPUT_FILE 
+            echo "    [$BACKEND] Execução $i concluída."
+            sleep 3
+        done
         
-        echo "  [$BACKEND] Execução $i concluída."
+        echo "Testes do $BACKEND finalizados. Arquivo gerado: $OUTPUT_FILE"
+        echo ""
         
-        # Respiro térmico para o processador
-        sleep 2
+        sleep 3
     done
-    
-    echo "-> Testes do $BACKEND finalizados. Arquivo gerado: $OUTPUT_FILE"
-    echo ""
-    
-    # Respiro maior entre a troca de backends (30 segundos)
-    sleep 5
 done
-
-echo "Todos os backends foram testados com sucesso!"

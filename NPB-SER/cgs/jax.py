@@ -18,7 +18,6 @@ def prepare_data(a, colidx, rowstr, x, z, p, q, r, naa):
 
     mat = jax_sparse.CSR((a_jnp, colidx_jnp, rowstr_jnp), shape=(nrows, ncols))
 
-    # Fatiamento estrito para o limite 'naa' (removendo os bounds extras de Fortran)
     x = jnp.array(x[:naa], dtype=jnp.float64)
     z = jnp.array(z[:naa], dtype=jnp.float64)
     p = jnp.array(p[:naa], dtype=jnp.float64)
@@ -30,7 +29,6 @@ def prepare_data(a, colidx, rowstr, x, z, p, q, r, naa):
 
 def cg_warmup(mat, x, z, p, q, r):
     for it in range(1, 1 + 1):
-        # No JAX, capturamos os vetores de volta pois eles são imutáveis
         rnorm_jax, x, z, p, q, r = conj_grad(mat, x, z, p, q, r)
 
         norm_temp1 = jnp.dot(x, z)                  # vecvecmul(x, z)
@@ -39,7 +37,6 @@ def cg_warmup(mat, x, z, p, q, r):
 
         x = norm_temp2 * z
     
-    # Retornamos para atualizar no escopo de quem chamou, caso necessário
     return x, z, p, q, r
 
 
@@ -78,7 +75,6 @@ def conj_grad(mat, x, z, p, q, r):
 
     rho = jnp.dot(r, r)                             # vecvecmul(r, r)
 
-    # Loop de iterações embutido no compilador XLA
     def body_fun(i, val):
         p_val, q_val, r_val, z_val, rho_val = val
         
@@ -97,13 +93,11 @@ def conj_grad(mat, x, z, p, q, r):
         
         return p_val, q_val, r_val, z_val, rho_val
 
-    # Disparo do fori_loop otimizado
     init_val = (p, q, r, z, rho)
     p, q, r, z, rho = jax.lax.fori_loop(1, cgitmax + 1, body_fun, init_val)
 
     r = jax_sparse.csr_matvec(mat, z)               # matvecmul(a, z)
 
-    # Cálculo da norma com abstração de arrays do JAX
     diff = x - r
     summ = jnp.dot(diff, diff)
     rnorm = jnp.sqrt(summ)                          # norm(x, r)

@@ -1,4 +1,71 @@
-# Testing
+# How to test
+
+```
+cd NPB-SER
+```
+
+## CG Kernels
+
+### Functions
+```
+prepare_data(a, colidx, rowstr, x, z, p, q, r, naa)
+init_cg(x, z, p, q, r)
+matvecmul(A_matrix, p, q)
+vecvecmul(v1, v2)
+scalarvecmul1(alpha, x, y)
+scalarvecmul2(alpha, x, y)
+norm(x, y)
+update_x(z, norm_temp2, x)
+```
+
+### Run
+```
+taskset -c 0 python CG_Kernels.py <-c {S, W, A, B, C, D, E}> --backend <{jax, numba, petsc, scipy, torch}>
+
+taskset -c 0 python CG_Kernels.py -c B --backend scipy
+```
+
+## CG Monolithic
+
+### Functions
+```
+prepare_data(a, colidx, rowstr, x, z, p, q, r, naa)
+cg_warmup(a, x, z, p , q, r)
+cg(a, x, z, p , q, r, npbparams)
+conj_grad(a, x, z, p, q, r)
+```
+
+### Run
+
+```
+taskset -c 0 python CG_Monolithic.py <-c {S, W, A, B, C, D, E}> --backend <{numba, petsc, scipy, torch}>
+
+taskset -c 0 python CG_Monolithic.py -c B --backend scipy
+```
+
+## Running all CG_Kernels implementations
+
+```
+./run.sh S
+./run.sh A
+./run.sh B
+or
+./run.sh SWABC
+```
+
+output folder: `./NPB-SER/results`
+
+## Running all CG_Monolithic implementations
+
+```
+./run_monolithic.sh S
+./run_monolithic.sh A
+./run_monolithic.sh B
+or
+./run_monolithic.sh SWABC
+```
+
+output folder: `./NPB-SER/results_mono`
 
 ## NAS Parallel Benchmarks with Python - Serial and GPU versions
 

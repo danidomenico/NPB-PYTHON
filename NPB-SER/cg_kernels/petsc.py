@@ -1,5 +1,3 @@
-import math
-
 import numpy
 import petsc4py
 
@@ -33,70 +31,34 @@ def prepare_data(a, colidx, rowstr, x, z, p, q, r, naa):
     return a_petsc, x_petsc, z_petsc, p_petsc, q_petsc, r_petsc
 
 
-def cg_warmup(a, x, z, p , q, r):
-    for it in range(1, 1 + 1):
-        rnorm = conj_grad(a, x, z, p, q, r)
-
-        norm_temp1 = x.dot(z)                # vecvecmul(x, z)
-        norm_temp2 = z.dot(z)                # vecvecmul(z, z)
-        norm_temp2 = 1.0 / math.sqrt(norm_temp2)
-
-        # Atualização in-place no PETSc: z é copiado para x, e x é escalado.
-        z.copy(result=x)
-        x.scale(norm_temp2)
-
-
-def cg(a, x, z, p , q, r, npbparams):
-    x.set(1.0) # init_x()
-
-    zeta = 0.0
-    for it in range(1, npbparams.NITER + 1):
-        rnorm = conj_grad(a, x, z, p, q, r)
-
-        norm_temp1 = x.dot(z)                # vecvecmul(x, z)
-        norm_temp2 = z.dot(z)                # vecvecmul(z, z)
-        norm_temp2 = 1.0 / math.sqrt(norm_temp2)
-        
-        zeta = npbparams.SHIFT + 1.0 / norm_temp1
-
-        if it == 1:
-            print("\n   iteration           ||r||                 zeta")
-        print("    %5d       %20.14e%20.13e" % (it, rnorm, zeta))
-
-        z.copy(result=x)
-        x.scale(norm_temp2)
-    
-    return zeta
-
-
-def conj_grad(a, x, z, p, q, r): 
-    cgitmax = 25
-    rho = 0.0
-
-    # init
+def init_cg(x, z, p, q, r):
     q.set(0.0)
     z.set(0.0)
     x.copy(result=r)
-    r.copy(result=p)
+    x.copy(result=p)
 
-    rho = r.dot(r)                       # vecvecmul(r, r)
 
-    for _ in range(1, cgitmax + 1):
-        a.mult(p, q)                     # matvecmul(a, p)
-        d = p.dot(q)
-        alpha = rho / d
-        rho0 = rho
-        
-        z.axpy(alpha, p)                 # scalarvecmul2( alpha, p, z)
-        r.axpy(-alpha, q)                # scalarvecmul2(-alpha, q, r)
-        rho = r.dot(r)                   # vecvecmul(r, r)
-        beta = rho / rho0
-        p.aypx(beta, r)                  # scalarvecmul1(beta, r, p)
-        
-    a.mult(z, r)                         # matvecmul(a, z)
-    
-    # r = x - r (utilizando aypx equivalente in-place)
-    r.aypx(-1.0, x)                      
-    rnorm = r.norm(PETSc.NormType.NORM_2)# norm(x, r)
-    
-    return rnorm
+def matvecmul(a_matrix, p, q):
+    a_matrix.mult(p, q)
+
+
+def vecvecmul(v1, v2):
+    return v1.dot(v2)
+
+
+def scalarvecmul1(alpha, x, y):
+    y.aypx(alpha, x)
+
+
+def scalarvecmul2(alpha, x, y):
+    y.axpy(alpha, x)
+
+
+def norm(x, y):
+    y.aypx(-1.0, x)                      
+    return y.norm(PETSc.NormType.NORM_2)
+
+
+def update_x(z, norm_temp2, x):
+    z.copy(result=x)
+    x.scale(norm_temp2)

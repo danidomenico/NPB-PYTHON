@@ -1,86 +1,57 @@
 import torch
-
+import math
+import os
 
 def prepare_data(a, colidx, rowstr, x, z, p, q, r, naa):
-	colidx = torch.from_numpy(colidx)
-	rowstr = torch.from_numpy(rowstr)
-	a = torch.from_numpy(a)
+    colidx_t = torch.from_numpy(colidx)
+    rowstr_t = torch.from_numpy(rowstr)
+    a_t = torch.from_numpy(a)
     
-	nnz = int(rowstr[naa].item())
+    nnz = int(rowstr_t[naa].item())
     
-	a = torch.sparse_csr_tensor(
-        rowstr[:naa+1],
-        colidx[:nnz],
-        a[:nnz],
+    A_matrix = torch.sparse_csr_tensor(
+        rowstr_t[:naa+1],
+        colidx_t[:nnz],
+        a_t[:nnz],
         size=(naa, naa),
         dtype=torch.float64
     )
     
-	x = torch.from_numpy(x).to(torch.float64)
-	z = torch.from_numpy(z).to(torch.float64)
-	p = torch.from_numpy(p).to(torch.float64)
-	q = torch.from_numpy(q).to(torch.float64)
-	r = torch.from_numpy(r).to(torch.float64)
+    x_t = torch.from_numpy(x).to(torch.float64)
+    z_t = torch.from_numpy(z).to(torch.float64)
+    p_t = torch.from_numpy(p).to(torch.float64)
+    q_t = torch.from_numpy(q).to(torch.float64)
+    r_t = torch.from_numpy(r).to(torch.float64)
     
-	return a, x, z, p, q, r
-
-def cg_warmup(a, x, z, p , q, r):
-	for it in range(1, 1 + 1):
-		rnorm = conj_grad(a, x, z, p, q, r)
-
-		norm_temp1 = torch.dot(x, z)                # vecvecmul(x, z)
-		norm_temp2 = torch.dot(z, z)                # vecvecmul(z, z)
-		norm_temp2 = torch.rsqrt(norm_temp2).item() # 1.0 / sqrt(norm_temp2)
-
-		torch.mul(z, norm_temp2, out=x)
+    return A_matrix, x_t, z_t, p_t, q_t, r_t
 
 
-def cg(a, x, z, p , q, r, npbparams):
-	x.fill_(1.0) # init_x()
-
-	zeta = 0.0
-	for it in range(1, npbparams.NITER + 1):
-		rnorm = conj_grad(a, x, z, p, q, r)
-
-
-		norm_temp1 = torch.dot(x, z)                # vecvecmul(x, z)
-		norm_temp2 = torch.dot(z, z)                # vecvecmul(z, z)
-		norm_temp2 = torch.rsqrt(norm_temp2).item() # 1.0 / sqrt(norm_temp2)
-		zeta = npbparams.SHIFT + 1.0 / norm_temp1
-
-		if it == 1:
-			print("\n   iteration           ||r||                 zeta")
-		print("    %5d       %20.14e%20.13e" % (it, rnorm, zeta))
-
-		x = norm_temp2 * z
-	
-	return zeta
+def init_cg(x, z, p, q, r):
+    q.zero_()
+    z.zero_()
+    r.copy_(x)
+    p.copy_(x)
 
 
-def conj_grad(a, x, z, p, q, r): 
-	cgitmax = 25
-	rho = 0.0
+def matvecmul(A_matrix, p, q):
+    torch.mv(A_matrix, p, out=q)
 
-	# init
-	q.zero_()
-	z.zero_()
-	r.copy_(x)
-	p.copy_(r)
 
-	rho = torch.dot(r, r)       	 # vecvecmul(r, r)
+def vecvecmul(v1, v2):
+    return torch.dot(v1, v2)
 
-	for _ in range(1, cgitmax+1):
-		q = torch.mv(a, p)    		 # matvecmul(a, p)
-		d = torch.dot(p, q).item()	 # vecvecmul(p, q)
-		alpha = rho / d
-		rho0 = rho
-		rho = 0.0
-		z.add_(p, alpha=alpha)       # scalarvecmul2( alpha, p, z)
-		r.add_(q, alpha=-alpha)      # scalarvecmul2(-alpha, q, r)
-		rho = torch.dot(r, r).item() # vecvecmul(r, r)
-		beta = rho / rho0
-		p.mul_(beta).add_(r)		 # scalarvecmul1(beta, r, p)
-	r = torch.mv(a, z)
 
-	rnorm = torch.dist(x, r, p=2).item() # norm(x, r)
-	return rnorm
+def scalarvecmul1(alpha, x, y):
+    torch.add(x, y, alpha=alpha, out=y)
+
+
+def scalarvecmul2(alpha, x, y):
+    y.add_(x, alpha=alpha)
+
+
+def norm(x, y):
+    return torch.dist(x, y, p=2)
+
+
+def update_x(z, norm_temp2, x):
+    return torch.mul(z, norm_temp2, out=x)

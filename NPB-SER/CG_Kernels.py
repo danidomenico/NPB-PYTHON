@@ -37,7 +37,8 @@ import importlib
 import numpy
 import math
 from numba import njit
-  
+import torch
+
 # Local imports
 sys.path.append(sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'common')))
 import npbparams
@@ -94,9 +95,13 @@ tran = 0.0
 amult = 0.0
 
 prepare_data = None
-cg = None
-cg_warmup = None
-conj_grad = None
+init_cg = None
+matvecmul = None
+vecvecmul = None
+scalarvecmul1 = None
+scalarvecmul2 = None
+norm = None
+update_x = None
 
 
 def set_global_variables():
@@ -121,14 +126,18 @@ def set_global_variables():
 	r = numpy.repeat(0.0, npbparams.NA)
 
 def load_backend(backend_name):
-    global prepare_data, cg, cg_warmup, conj_grad
+    global prepare_data, init_cg, matvecmul, vecvecmul, scalarvecmul1, scalarvecmul2, norm, update_x
     
     module = importlib.import_module(backend_name)
-
+	
     prepare_data = module.prepare_data
-    cg = module.cg
-    cg_warmup = module.cg_warmup
-    conj_grad = module.conj_grad
+    init_cg = module.init_cg
+    matvecmul = module.matvecmul
+    vecvecmul = module.vecvecmul
+    scalarvecmul1 = module.scalarvecmul1
+    scalarvecmul2 = module.scalarvecmul2
+    norm = module.norm
+    update_x = module.update_x
 
 
 def create_zeta_verify_value():
@@ -149,6 +158,40 @@ def create_zeta_verify_value():
 		zeta_verify_value = 77.522164599383
 	
 	return zeta_verify_value
+
+
+# ---------------------------------------------------------------------
+# floating point arrays here are named as in NPB1 spec discussion of 
+# CG algorithm
+# ---------------------------------------------------------------------
+#static void conj_grad(int colidx[], int rowstr[], double x[], double z[], 
+#double a[], double p[], double q[], double r[], double* rnorm)
+def conj_grad(A_matrix, x, z, p, q, r): 
+	cgitmax = 25
+	rho = 0.0
+
+	init_cg(x, z, p, q, r)
+
+	rho = vecvecmul(r, r)
+
+	for cgit in range(1, cgitmax+1):
+		matvecmul(A_matrix, p, q)
+		d = vecvecmul(p, q)
+		alpha = rho / d
+		rho0 = rho
+		rho = 0.0
+		scalarvecmul2(alpha, p, z)
+		scalarvecmul2(-alpha, q, r)
+		rho = vecvecmul(r, r)
+		beta = rho / rho0
+		scalarvecmul1(beta, r, p)
+	matvecmul(A_matrix, z, r)
+
+	# ---------------------------------------------------------------------
+	# at this point, r contains A.z
+	# ---------------------------------------------------------------------
+	rnorm = norm(x, r)
+	return rnorm
 
 
 # ---------------------------------------------------------------------
@@ -396,9 +439,23 @@ def sprnvc(n, nz, nn1, v, iv, tran_aux):
 # aelt           r*8
 # ---------------------------------------------------------------------
 #static void makea(int n, int nz, double a[], int colidx[], int rowstr[], 
-#int firstrow, int lastrow, int arow[], int acol[][NONZER+1], double aelt[][NONZER+1], int iv[])
+#int firstrow, int lastrow, int firstcol, int lastcol, int arow[], int acol[][NONZER+1], double aelt[][NONZER+1], int iv[])
 @njit
-def makea(n, nz, a, colidx, rowstr, firstrow, lastrow, arow, acol, aelt, iv, tran_aux):
+def makea(n,
+		nz,
+		a,
+		colidx,
+		rowstr,
+		firstrow,
+		lastrow,
+#		firstcol,
+#		lastcol,
+		arow,
+		acol, 
+		aelt, 
+		iv,
+		tran_aux):
+	
 	NONZER_aux = npbparams.NONZER+1
 	ivc = numpy.empty(NONZER_aux, dtype=numpy.int32)
 	vc = numpy.empty(NONZER_aux, dtype=numpy.float64)
@@ -423,8 +480,8 @@ def makea(n, nz, a, colidx, rowstr, firstrow, lastrow, arow, acol, aelt, iv, tra
 		nzv = vecset(n, vc, ivc, nzv, iouter+1, 0.5)
 		arow[iouter] = nzv
 		for ivelt in range(nzv):
-			acol[iouter*NONZER_aux+ivelt] = ivc[ivelt] - 1 
-			aelt[iouter*NONZER_aux+ivelt] = vc[ivelt]
+			acol[iouter*NONZER_aux+ivelt] = ivc[ivelt] - 1 #acol[iouter][ivelt] = ivc[ivelt] - 1
+			aelt[iouter*NONZER_aux+ivelt] = vc[ivelt] # aelt[iouter][ivelt] = vc[ivelt]
 			
 	# ---------------------------------------------------------------------
 	# ... make the sparse matrix from list of elements with duplicates
@@ -459,6 +516,12 @@ def main():
 	
 	t_names = numpy.empty(T_LAST, dtype=object)
 	
+	timeron = os.path.isfile("timer.flag")
+	if timeron:
+		t_names[T_INIT] = "init"
+		t_names[T_BENCH] = "benchmk"
+		t_names[T_CONJ_GRAD] = "conjgd"
+		
 	c_timers.timer_start(T_INIT)
 		
 	firstrow = 0
@@ -507,18 +570,90 @@ def main():
 			colidx[k] = colidx[k] - firstcol
 	
 	A_matrix, x, z, p, q, r = prepare_data(a, colidx, rowstr, x, z, p, q, r, naa)
+
+	#Block commented, arrays already innitialized
+	# set starting vector to (1, 1, .... 1)
+	#for i in range(npbparams.NA+1): 
+	#	x[i] = 1.0
+	#end = lastcol - firstcol + 1
+	#for j in range(end):
+	#	q[j] = 0.0
+	#	z[j] = 0.0
+	#	r[j] = 0.0
+	#	p[j] = 0.0  
+	zeta = 0.0
 	
-	cg_warmup(A_matrix, x, z, p, q, r)
+	# -------------------------------------------------------------------
+	# ---->
+	# do one iteration untimed to init all code and data page tables
+	# ----> (then reinit, start timing, to niter its)
+	# -------------------------------------------------------------------*/
+	for it in range(1, 1+1):
+		# the call to the conjugate gradient routine
+		rnorm = conj_grad(A_matrix, x, z, p, q, r)
+
+		# --------------------------------------------------------------------
+		# zeta = shift + 1/(x.z)
+		# so, first: (x.z)
+		# also, find norm of z
+		# so, first: (z.z)
+		# --------------------------------------------------------------------
+		norm_temp1 = vecvecmul(x, z)
+		norm_temp2 = vecvecmul(z, z)        
+		norm_temp2 = 1.0 / math.sqrt(norm_temp2)
+
+		# normalize z to obtain x
+		update_x(z, norm_temp2, x)
+	#END for it in range(1, 1+1) - end of do one iteration untimed 
+
+	# set starting vector to (1, 1, .... 1)
+	for i in range(npbparams.NA):
+		x[i] = 1.0
+	zeta = 0.0
 
 	c_timers.timer_stop(T_INIT)
 
 	print(" Initialization time = %15.3f seconds" % (c_timers.timer_read(T_INIT)))
 
 	c_timers.timer_start(T_BENCH)
+	
+	# --------------------------------------------------------------------
+	# ---->
+	# main iteration for inverse power method
+	# ---->
+	# --------------------------------------------------------------------
+	for it in range(1, npbparams.NITER+1):
+		# the call to the conjugate gradient routine
+		if timeron:
+			c_timers.timer_start(T_CONJ_GRAD)
+		rnorm = conj_grad(A_matrix, x, z, p, q, r)
+		if timeron:
+			c_timers.timer_stop(T_CONJ_GRAD)
 
-	zeta = cg(A_matrix, x, z, p, q, r, npbparams)
+		# --------------------------------------------------------------------
+		# zeta = shift + 1/(x.z)
+		# so, first: (x.z)
+		# also, find norm of z
+		# so, first: (z.z)
+		# --------------------------------------------------------------------
 
+		norm_temp1 = vecvecmul(x, z)
+		norm_temp2 = vecvecmul(z, z)
+		norm_temp2 = 1.0 / math.sqrt(norm_temp2)
+		zeta = npbparams.SHIFT + 1.0 / norm_temp1
+		if it == 1:
+			print("\n   iteration           ||r||                 zeta")
+		print("    %5d       %20.14e%20.13e" % (it, rnorm, zeta))
+
+		# normalize z to obtain x
+		update_x(z, norm_temp2, x)
+	# end of main iter inv pow meth
+	
 	c_timers.timer_stop(T_BENCH)
+
+	# --------------------------------------------------------------------
+	# end of timed section
+	# --------------------------------------------------------------------
 
 	t = c_timers.timer_read(T_BENCH)
 
@@ -555,6 +690,21 @@ def main():
 			mflops,
 			"          floating point",
 			verified)
+
+	if timeron:
+		tmax = c_timers.timer_read(T_BENCH)
+		if tmax == 0.0:
+			tmax = 1.0
+		print("  SECTION   Time (secs)")
+		for i in range(T_LAST):
+			t = c_timers.timer_read(i)
+			if i == T_INIT:
+				print("  %8s:%9.3f" % (t_names[i], t))
+			else:
+				print("  %8s:%9.3f  (%6.2f%%)" % (t_names[i], t, t * 100.0 / tmax))
+				if i == T_CONJ_GRAD:
+					t = tmax - t
+					print("    --> %8s:%9.3f  (%6.2f%%)" % ("rest", t, t * 100.0 / tmax))
 
 
 if __name__ == "__main__":
